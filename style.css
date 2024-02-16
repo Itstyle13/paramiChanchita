@@ -1,0 +1,220 @@
+body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #000000;
+}
+
+
+.rosa {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.petalo {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+.petalo:nth-child(1) { top: 0; left: 15px; }
+.petalo:nth-child(2) { top: 15px; left: 0; }
+.petalo:nth-child(3) { top: 15px; right: 0; }
+.petalo:nth-child(4) { bottom: 0; left: 15px; }
+.petalo:nth-child(5) { top: 7.5px; left: 15px; }
+
+.tallos {
+  position: absolute;
+  bottom: -20px;
+  left: 27px;
+  width: 6px;
+  height: 20px;
+  background-color: green;
+}
+
+/* Animación inicial para "florecer" */
+.rosa {
+  animation: florecer 2s forwards;
+}
+
+@keyframes florecer {
+  0% { transform: scale(0.5); }
+  100% { transform: scale(1); }
+}
+
+#cancion {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+
+.corazon {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background-color: pink;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  clip-path: polygon(50% 0%, 61% 25%, 78% 25%, 100% 50%, 100% 75%, 50% 100%, 0% 75%, 0% 50%, 22% 25%, 39% 25%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: brillo 2s infinite alternate;
+}
+
+@keyframes brillo {
+  0% {
+    box-shadow: 0 0 8px 0 rgba(255,105,180,0.8);
+  }
+  100% {
+    box-shadow: 0 0 12px 5px rgba(255,105,180,0.8);
+  }
+}
+
+.imagen-rosa {
+  width: 80%; /* Ajusta el tamaño de la imagen para que quepa dentro del corazón */
+  height: auto;
+  visibility: hidden; /* Cambiado a hidden para controlar la visualización con JS */
+}
+
+.carta {
+  position: absolute;
+  width: 300px;
+  height: 100px;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: none; /* Inicialmente oculta */
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2000; /* Asegura que la carta esté por encima de otros elementos */
+
+}
+
+.carta textarea {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: calc(100% - 20px);
+  height: 60%;
+}
+
+.carta button {
+  align-self: center;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Estilo específico para centrar la palabra "MES" */
+.centrado {
+  text-align: center; /* Centrado horizontal para el texto dentro de la línea, si es necesario */
+}
+
+.frase-animada {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra los elementos hijos horizontalmente */
+  position: fixed;
+  left: 2%;
+  top: 108%;
+  transform: translate(0, -50%) rotate(-90deg);
+  transform-origin: left top;
+  color: #ffffff; /* Color dorado para el brillo */
+  font-weight: bold;
+  font-size: 74px;
+  white-space: nowrap;
+  animation: brillo-parpadeo 2s infinite, mover-izquierda-derecha 3s infinite linear;
+}
+
+@keyframes brillo-parpadeo {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FF8C00, 0 0 70px #FF8C00, 0 0 80px #FF8C00, 0 0 100px #FF8C00;
+  }
+  50% {
+    opacity: 0.5;
+    text-shadow: none;
+  }
+}
+
+@keyframes mover-izquierda-derecha {
+  0% {
+    left: 0;
+    transform: translate(0, -50%) rotate(-90deg);
+  }
+  100% {
+    left: 2%;
+    transform: translate(2%, -50%) rotate(-90deg); /* Ajuste para asegurar el desplazamiento completo */
+  }
+}
+
+.rosa {
+  animation: parpadeo 2.5s infinite, brillo 4s infinite;
+}
+
+@keyframes parpadeo {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes brillo {
+  0%, 100% { filter: drop-shadow(0 0 8px rgb(255, 255, 255)); }
+  50% { filter: drop-shadow(0 0 20px rgb(70, 152, 61)); }
+}
+
+.rosa-no-activa {
+  animation: none;
+}
+
+@keyframes brillo-rosado {
+  0%, 100% {
+    box-shadow: 0 0 8px #FF1493, 0 0 12px #FF69B4, 0 0 16px #FFB6C1;
+  }
+  50% {
+    box-shadow: 0 0 4px #FF1493, 0 0 6px #FF69B4, 0 0 8px #FFB6C1;
+  }
+}
+
+.carta {
+  /* Tus estilos existentes para .carta aquí */
+  animation: brillo-rosado 10s infinite;
+}
+
+
+.fondo-imagen {
+  position: fixed; /* O 'absolute' si prefieres */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('Imagenes/Screenshot_20240216-102352~2.png');
+  background-size: contain;
+  background-position: center;
+  z-index: -1; /* Asegúrate de que esté detrás de otros contenidos */
+}
+
+@keyframes desvanecer-aparecer {
+  0%, 100% {
+      opacity: 0;
+  }
+  50% {
+      opacity: 1;
+  }
+}
+
+.fondo-imagen {
+  /* Propiedades anteriores */
+  animation: desvanecer-aparecer 10s infinite; /* Ajusta la duración según prefieras */
+}
+
+
+
